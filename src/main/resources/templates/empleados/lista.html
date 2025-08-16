@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Empleados</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<h1>Lista de Empleados</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Edad</th>
+        <th>Cargo</th>
+        <th>Fecha ingreso</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="empleado : ${empleados}">
+        <td th:text="${empleado.nombre}"></td>
+        <td th:text="${empleado.correoElectronico}"></td>
+        <td th:text="${empleado.edad}"></td>
+        <td th:text="${empleado.cargo}"></td>
+        <td th:text="${empleado.fechaIngreso}"></td>
+        <td>
+            <a th:href="@{/empleados/editar/{id}(id=${empleado.idEmpleado})}" class="boton">Editar</a>
+            <a th:href="@{/empleados/eliminar/{id}(id=${empleado.idEmpleado})}" class="boton"
+               onclick="return confirm('¿Seguro que deseas eliminar este empleado?')">Eliminar</a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a th:href="@{/empleados/nuevo}" class="boton-agregar">Agregar Nuevo Empleado</a>
+</div>
+
+
+</body>
+</html>
